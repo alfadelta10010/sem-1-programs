@@ -1,0 +1,48 @@
+1) Suppose a person wants to calculate the simple interest in the account he has taken for specified number of years. Read values from the user
+> si = (prin * rate * time) / 100
+
+2) Accept name, roll number and field of interest from the user and print
+in the below format: My name is abc and my roll number is 123. My field of interest is xyz.
+> print("My name is {0} and my roll number is {1}. My field of interest is {2}".format(name, roll, interest))
+
+3) Write a python program which accepts the radius of a sphere and computes the volume and surface area.
+> sa = 4(pi)r^2
+> v = 4/3 pi r^3
+
+4) Write a python program to find the gravitational forces acting between two objects of given masses
+
+5) Write a python program to read 4 characters separately from the user. Convert every character to its next alphabet
+> c1 = chr(ord(c1)+1)
+
+6) If the person leaves home at 6:52 am, and runs1 mile at an easy pace (8:15 per mile), then 3 miles at a tempo (7:12 per mile) and 1 mile at easy pace again, what time does the person get back home for breakfast?
+> sec1 = 8 * 60 + 15
+> sec2 = 7 * 60 + 12
+> total = 2 * sec1 + 3 * sec2
+> conv to min and hrs
+
+7) Write a python program to clear the right most set bit of a number. (flip it too)
+> ans = n & (n-1)
+
+8) Write a python program
+a) to get a single random character from a specified string
+> ch = random.choice(name)
+
+b) that does the following:
+i) shuffle students in class (10 students)
+> random.shuffle()
+ii) to choose one student who would become a class rep
+> random.choice()
+iii) to create a random sample of size 2 from the available number of population who are the potential candidates to become event coordinators
+> random.sample(x,2)
+
+c) calculate multiplication of two random float numbers
+> random.random()
+> random.uniform(9.5, 99.5)
+> ans = a * b
+
+9) Generate a random floating point number within a range
+
+10) Generate the same random number every time.
+> random.seed(x) # default is the system time
+
+11) Roll a die in such a way that every roll gives the same number

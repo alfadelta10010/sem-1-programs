@@ -1,0 +1,46 @@
+1. WAP which uses a while loop to sum the squares of integers (starting from 1) until the total exceeds 200.
+Print the final total and the last number to be squared and added.
+n = 0 while total < 200:, num = num + 1, total = total + num ** 2
+
+2. WAP which keeps prompting user to guess a word. The user is allowed up to 10 guesses. Write your code in such a way
+that the secret word and the number of allowed guesses are easy to change. Print messages to give the user feedback.
+guesses = None, while (guess != word AND guess_left > 0):, if correct, gg, else guess_left = guess_left - 1
+
+3. WAP that will read three numbers into variables named a, b and c and print a message informing the user whether
+they are a pythagorean triplet.
+
+4. Check whether a given date is valid. If yes, find the next date. Consider leap year as well.
+(take year, check if leap year, take month no, and set a max date, then check if the date entered
+is between 1 and max date, if yes, check if month number is between 1 and 12, if dd == max date and
+month != 12, then dd = 1 and mm +=1, if dd == max date (nested if) month = 12, then y+1 as well, else dd+1)
+yy%4 == 0 and (yy%100 != 100 or yy%400 == 0)
+
+5. WAP to read the values of a, b, c and produce a message saying how many roots the quadratic equation
+has and their forms
+d = b**2 - 4*a*c
+if d == 0, return real and equal, d > 0, return real ad distinct, d < 0, return imaginary
+if imaginary, sqrt(-d)/2a = imaginary and -b/2a = real, else imaginary = sqrt(d)/2a
+
+6. Some programs ask tge user to imput a variable number of data enteries, and finally to enter a specific character or string (called a sentinel) which signifies that there are no more entries. WAP t which averages positive integers. your program shou;dnprompt the user to enter integers iuntil the user enters a negative integer. The negative int should be discarded and you should pront avg of all previously entered integers
+if n < 0, break while True: loop to get numbers
+avg = float(sum(list)/len(list))
+
+7. WAP to add the digits of a positive number repeatedly until the result has a single digit. if 59, 5+9=14, 1+4=5
+num = (num-1)%9 + 1
+
+8. WAP that reads two integer values n and m from the user and then produces a box that is n wide and m deep.
+
+n = columns, m = rows
+i = 0
+while (i < m):
+j=0
+while(j < n):
+if (i == 0 or i == m - 1 or j == 0 or j == height - 1):
+print('@', end=' ')
+else:
+print(' ', end = ' ')
+j = j + 1
+i = i + 1
+print()
+
+
