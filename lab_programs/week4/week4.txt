@@ -22,7 +22,10 @@ d = b**2 - 4*a*c
 if d == 0, return real and equal, d > 0, return real ad distinct, d < 0, return imaginary
 if imaginary, sqrt(-d)/2a = imaginary and -b/2a = real, else imaginary = sqrt(d)/2a
 
-6. Some programs ask tge user to imput a variable number of data enteries, and finally to enter a specific character or string (called a sentinel) which signifies that there are no more entries. WAP t which averages positive integers. your program shou;dnprompt the user to enter integers iuntil the user enters a negative integer. The negative int should be discarded and you should pront avg of all previously entered integers
+6. Some programs ask tge user to input a variable number of data entries, and finally to enter a specific character or
+string (called a sentinel) which signifies that there are no more entries. WAP to which averages positive integers. your
+program should prompt the user to enter integers until the user enters a negative integer. The negative int should be
+discarded, and you should print avg of all previously entered integers
 if n < 0, break while True: loop to get numbers
 avg = float(sum(list)/len(list))
 
