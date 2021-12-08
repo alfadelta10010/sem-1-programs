@@ -2,9 +2,7 @@
 # and print a message informing the user whether they are a pythagorean
 # triplet.
 a, b, c = input("Enter three numbers: ").split(sep=" ")
-a = int(a)
-b = int(b)
-c = int(c)
+a = int(a); b = int(b); c = int(c)
 if a > b and a > c:
     largest = a
     rhs = c ** 2 + b ** 2

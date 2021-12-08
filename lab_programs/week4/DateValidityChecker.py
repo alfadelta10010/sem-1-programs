@@ -41,7 +41,6 @@ else:
         dd = dd + 1
     print("The next date is: {}/{}/{}".format(dd, mm, yyyy))
 
-
 """
 if yyyy % 4 == 0 and (yyyy % 100 != 100 or yyyy % 400 == 0) and mm == 2:
     MaxDD = 29

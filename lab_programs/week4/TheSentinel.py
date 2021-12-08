@@ -1,8 +1,7 @@
-# WAP to which averages positive integers. your program should prompt the user to enter
+# 6. WAP to which averages positive integers. your program should prompt the user to enter
 # integers until the user enters a negative integer.
 
-a = []
-i = 0
+a = []; i = 0
 while True:
     n = int(input("Enter number: "))
     if n < 0:
