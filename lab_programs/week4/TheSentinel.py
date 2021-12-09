@@ -1,4 +1,4 @@
-# 6. WAP to which averages positive integers. your program should prompt the user to enter
+# 6. WAP to which averages positive integers. Your program should prompt the user to enter
 # integers until the user enters a negative integer.
 
 a = []; i = 0

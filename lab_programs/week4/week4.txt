@@ -34,20 +34,6 @@ num = (num-1)%9 + 1
 
 8. WAP that reads two integer values n and m from the user and then produces a box that is n wide and m deep.
 
-n = columns, m = rows
-i = 0
-while (i < m):
-j=0
-while(j < n):
-if (i == 0 or i == m - 1 or j == 0 or j == height - 1):
-print('@', end=' ')
-else:
-print(' ', end = ' ')
-j = j + 1
-i = i + 1
-print()
-
-
 There are 4 types of arguments
 1) positional argument
 2) keyword argument
