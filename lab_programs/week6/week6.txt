@@ -1,36 +1,13 @@
-1)
-st1 = input
-new_vow = []
-for i in ogstring
- if i == aeiou
-  new_vow.append(i)
-print(og string, vowels)
+1) Write a program to count the number of Vowels in a given string and store in separate list.
 
-2)
-a)
-gadetgs = ["dsad", 21312, "dfsfsd"]
-str_items = []
-num_items = []
-for item in gadgets:
- if isinstance(item, str):
-  str_items.append(item)
- elif isinstance(item, (int, float)):
-  num_items.append(item)
+2) Write a python program to perform the following operations using given list as input:
+a) Create separate lists of strings and numbers.
+b) Sort the strings list in ascending order
+c) Sort the number list from lowest to highest
+d) Sort the number list from highest to lowest
 
-b)str_items.sort()
-str.lower(str_items)
-
-c) numitems.sort()
-
-d) numitems.sort(reverse=True)
-
-3)
-l_int = []
-l_float = []
-l_str = []
-l_tuple = []
-l_list = []
-l_set = []
+3) Given a heterogeneous list, create separate lists for different types of data. Write a python program to achieve the same.
+l_int = []; l_float = []; l_str = []; l_tuple = []; l_list = []; l_set = []
 for i in oglist:
     c = type(i)
     if c == int:
@@ -41,27 +18,24 @@ for i in oglist:
         l_str.append(i)
 print()
 
-4)
+4)Write a python program to find the frequency of the largest element in a list. List may contain duplicates.
 List1 = [11,22,88,53,88,53,88]
-l1 = max(List1)
 largestCount = count(max(List1))
 
-5)
+5) Write a python program to find the sum of diagonal elements in nested 2D list.
 list_2D = [[1,2,3],[4,5,6],[7,8,9]]
 sum = 0
 for i in range(len(list_2D)):
  sum = sum + list_2D [i][i]
 print(sum)
 
-6)
-values = input()
+6) Write a python program which accepts a sequence of comma-separated numbers from console and generate a list and a tuple which contains every number.
+values = input("Enter values separated by commas: ")
 list = values.split(",")
 tuple = tuple(list1)
 print(tuple, list)
 
-7)
+7) Write a Python program to find the repeated items of a tuple.
 tuple1 = (2,4,5,6,2,3,4,4,7)
 n = int(input(enter number to check))
 count_rep = tuple1.count(n)
-
-qb and mcqs
