@@ -7,7 +7,6 @@ hello(input("Please enter your name: "))
 hello(input())
 
 
-'''                        '''
 
 
 def display():
@@ -40,4 +39,28 @@ def fibby(n1):
         a, b = b, a + b
 
 
+# old
+"""
+
 # fibby(1000)
+# if outer function is deleted, inner function is still accessible with its address
+"""
+
+
+# WAP to find sum of two numbers using closure
+def a1(a, b):
+    def a2():
+        print(a + b)
+
+    return a2
+a = a1(10, 20)
+a()
+
+def f4(c):
+    def f5():
+        while c > 0:
+            c = c - 1
+            print(c)
+    return f5
+x = f4(10)
+x()
