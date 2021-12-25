@@ -1,0 +1,22 @@
+tkinter library
+
+Event loop: keeps your window active and always keeps
+track of all the events that occur on the window.
+Tk() outputs the final output
+
+to add components:
+pat function, grid function
+
+
+.get(): to get input from elements
+
+Checkbutton() args:
+activebackground: set the colour of the bg when clicked
+activeforeground: set the colour of the text when clicked
+offvalue & onvalue: when clicked, the value sent back is 0
+or 1 by default, but can be changed
+padx & pady: Padding on left and right, and top and bottom respectively
+font: Font size
+variable: selects the variable to send the value to
+command: which function to be run when state is changed
+.deselect(): Clear the current value
