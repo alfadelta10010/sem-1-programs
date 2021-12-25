@@ -1,6 +1,12 @@
-import random, time
-import turtle
+# One player thinks of a word, phrase or sentence and the other tries to guess it
+# by suggesting letters within a certain number of guesses.  If the guessing player
+# suggests a letter which occurs in the word, the other player writes it in all its
+# correct positions. If the suggested letter does not occur in the word, the other
+# player draws one element of a hanged stick figure as a tally mark.
 
+import random
+import time
+import turtle
 turtle.color("black")
 turtle.speed(1)
 
@@ -107,7 +113,6 @@ def face():
     turtle.forward(3)
     turtle.forward(1)
     turtle.hideturtle()
-    time.sleep(1000)
 
 
 answerList = ["world", "animation", "africa", "computer", "rickshaw", "physics", "chemistry", "inception"]
@@ -133,20 +138,21 @@ count = 6
 
 while count > 0 and display != answer:
     guess = input("Please guess a letter: ")
-
-    c = 0
+    flag = False
     for i in range(len(answer)):
         if answer[i] == guess:
             display[i] = guess
-            c = 1
+            flag = True
     print(" ".join(display))
     print()
-    if c == 0:
-        count -= 1
+
+    if not flag:
+        count = count - 1
         L[count]()
-    print(count)
+    print("Chances left:", count)
 
     if count == 0:
-        print("Sorry you lost...better luck next time.The word was", answer1)
+        print("Sorry you lost. The word was", answer1)
 if count != 0:
     print("Well done you guessed the word")
+time.sleep(10)
