@@ -1,0 +1,11 @@
+A lambda function is created using the lambda operator
+syntax => lambda arguments: expression
+lambda function can have any number of arguments but ut takes just one expression
+
+It's a one time use function
+print(lambda x: (expression), (argument))
+
+write a lambda function to double/triple a number
+print((lambda x,c: x * n), (2,3))
+read first and last name from user and print the full name
+print((lambda f, l: "full name: {} {}".format(f.title(), l.title())) (input("First Name: "), input("Last Name: ")))
