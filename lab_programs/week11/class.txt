@@ -1,0 +1,74 @@
+1. wap using lambda function
+a) multiply argument x wth arg y and print the result
+    r = lambda x,y:x*y
+    print(r(12,4))
+o/p: 48
+
+b) to find whether a given string starts with a given character
+    starts_with = lambda x :true if x.startswith('P') else False
+    print(starts_with("Python"))
+o/p: True
+
+c)To extract year month date and time
+import datetime
+now = datetime.datetime.now()
+print("TIME:", now)
+year = lambda x: x.year
+month = lambda x: x.month
+day = lambda x: x.day
+t = lambda x: x.time()
+print("Year:", year(now))
+print("Month:", month(now))
+print("Date:", day(now))
+print("Time:", t(now))
+
+O/P:
+TIME: 2021-12-31 08:35:05.882328
+Year: 2021
+Month: 12
+Date: 31
+Time: 08:35:05.882328
+
+d) To sort a list of dictionaries
+models = [{'Make':'Nokia', 'model':'216', 'colour':'Black'}, {'Make': 'Mi Max', 'model':'2', 'colour':'Gold'},
+         {'Make':'Samsung', 'model':'7', 'colour':'Blue'}]
+print("Original List of dictionaries:")
+print(models)
+sorted_models = sorted(models, key = lambda x: x['colour'])
+print("Sorted List, based on colour:")
+print(sorted_models)
+
+2. WAP using map/reduce/filter and lambda
+a) Given a list of strings,remove all strings that have first character as a digit
+l = ["hi", "1gff", "h3445", "6sds", "dfg", "234234"]
+print(list(filter(lambda x: x if x[0].isdigit() == False else None, l)))
+
+b) Given a list of numbers, find maximum in the list
+l = [23, 45, 12, 47, 54]
+import functools
+print(functools.reduce(lambda x, y : x if x > y else y, l))
+
+c) Given a list of tuples containing two integers, remove all tuples where second element in tuple is not
+a factor of first element
+l = [(2, 3), (4, 2), (6, 3), (6, 4), (16, 4), (5, 2)]
+print(list(filter(lambda x:x if x[0]%x[1] == 0 else None, l)))
+
+3) Write a function to mimic reduce called myreduce
+Test this with the following calls
+a) Given a list of numbers, find the maximum in the list
+def myreduce(my_function, my_list):
+    r = my_list[0]
+    for next in my_list[1:]:
+        r = my_function(r, next)
+    return r
+l = [23, 45, 12, 47, 54]
+print(myreduce(lambda x, y : x if x > y else y, l))
+
+b) Given a list of integers, combine all integers to form a single integer
+def myreduce(my_function, my_list)
+    r = my_list[0]
+    for next in my_list[1:]:
+        r = my_function(r, next)
+    return r
+l = [1, 25, 32, 4]
+print(int(myreduce(lambda x, y : str(x) + str (y), l)))
