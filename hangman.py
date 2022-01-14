@@ -7,8 +7,17 @@
 import random
 import time
 import turtle
+import os
 turtle.color("black")
 turtle.speed(1)
+
+
+def clearScreen():
+    if os.name in ('nt', 'dos'):
+        command = 'cls'
+    else:
+        command = 'clear'
+    os.system(command)
 
 
 def stand():
@@ -115,44 +124,70 @@ def face():
     turtle.hideturtle()
 
 
-answerList = ["world", "animation", "africa", "computer", "rickshaw", "physics", "chemistry", "inception"]
-vowelsList = ["a", "e", "i", "o", "u"]
-L = [face, leg, body, hands, head, stand]
-random.shuffle(answerList)
-answer1 = answerList[0]
-answer = list(answerList[0])
-display = []
-display.extend(answer)
-
-for i in range(len(display)):
-    w = 0
-    for j in range(len(vowelsList)):
-        if display[i] == vowelsList[j]:
-            w = 1
-    if w == 0:
-        display[i] = "_"
-print(" ".join(display))
-print()
-
-count = 6
-
-while count > 0 and display != answer:
-    guess = input("Please guess a letter: ")
-    flag = False
-    for i in range(len(answer)):
-        if answer[i] == guess:
-            display[i] = guess
-            flag = True
+def mainGame(answerIn):
+    answer = list(answerIn)
+    display = []
+    display.extend(answer)
+    for i in range(len(display)):
+        w = 0
+        for j in range(len(vowelsList)):
+            if display[i] == vowelsList[j]:
+                w = 1
+        if w == 0:
+            display[i] = "_"
     print(" ".join(display))
     print()
 
-    if not flag:
-        count = count - 1
-        L[count]()
-    print("Chances left:", count)
+    count = 6
 
-    if count == 0:
-        print("Sorry you lost. The word was", answer1)
-if count != 0:
-    print("Well done you guessed the word")
-time.sleep(10)
+    while count > 0 and display != answer:
+        guess = input("Please guess a letter: ")
+        flag = False
+        for i in range(len(answer)):
+            if answer[i] == guess:
+                display[i] = guess
+                flag = True
+        print(" ".join(display))
+        print()
+
+        if not flag:
+            count = count - 1
+            L[count]()
+        print("Chances left:", count)
+
+        if count == 0:
+            print("Sorry you lost. The word was", answerIn)
+    if count != 0:
+        print("Well done you guessed the word")
+    time.sleep(10)
+
+
+vowelsList = ["a", "e", "i", "o", "u"]
+L = [face, leg, body, hands, head, stand]
+answerList = ["world", "animation", "africa", "computer", "rickshaw", "physics", "chemistry", "inception", "header",
+                  "grandfather", "avatar", "shampoo", "electrolysis", "orangutan", "flow", "rumble", "shambles",
+                  "display", "international", "binder", "paperclip", "socket", "inferno", "archetype", "external",
+                  "forgettable", "inject", "forlorn", "swap", "kernel", "wardrobe", "humour", "bomb", "terraform"]
+print("Lets play Hangman! \n1) Play Single player \n2) Play with a friend")
+mode = int(input("Please select your mode (1 or 2): "))
+if mode == 1:
+    random.shuffle(answerList)
+    answer1 = answerList[0]
+    answerL = list(answerList[0])
+    mainGame(answerL)
+    clearScreen()
+elif mode == 2:
+    answerIn1 = input("Player 2: Enter the word: ")
+    clearScreen()
+    mainGame(answerIn1)
+    clearScreen()
+    turtle.clearscreen()
+    turtle.speed(1)
+    answerIn2 = input("Player 1: Enter the word: ")
+    answer2 = list(answerIn2)
+    clearScreen()
+    mainGame(answer2)
+else:
+    print("You did not enter a correct choice. Terminating program...")
+    time.sleep(10)
+
