@@ -8,6 +8,7 @@ import random
 import time
 import turtle
 import os
+
 turtle.color("black")
 turtle.speed(1)
 
@@ -165,9 +166,9 @@ def mainGame(answerIn):
 vowelsList = ["a", "e", "i", "o", "u"]
 L = [face, leg, body, hands, head, stand]
 answerList = ["world", "animation", "africa", "computer", "rickshaw", "physics", "chemistry", "inception", "header",
-                  "grandfather", "avatar", "shampoo", "electrolysis", "orangutan", "flow", "rumble", "shambles",
-                  "display", "international", "binder", "paperclip", "socket", "inferno", "archetype", "external",
-                  "forgettable", "inject", "forlorn", "swap", "kernel", "wardrobe", "humour", "bomb", "terraform"]
+              "grandfather", "avatar", "shampoo", "electrolysis", "orangutan", "flow", "rumble", "shambles",
+              "display", "international", "binder", "paperclip", "socket", "inferno", "archetype", "external",
+              "forgettable", "inject", "forlorn", "swap", "kernel", "wardrobe", "humour", "bomb", "terraform"]
 print("Lets play Hangman! \n1) Play Single player \n2) Play with a friend")
 mode = int(input("Please select your mode (1 or 2): "))
 if mode == 1:
@@ -190,4 +191,3 @@ elif mode == 2:
 else:
     print("You did not enter a correct choice. Terminating program...")
     time.sleep(10)
-
