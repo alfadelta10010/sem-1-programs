@@ -1,4 +1,3 @@
-'''
 from tkinter import *
 root = Tk()
 frame1 = Frame(root)
@@ -6,18 +5,19 @@ frame2 = Frame(root)
 frame3 = Frame(root)
 for frame in (frame1, frame2, frame3):
     frame.grid(row=0, column=0)
-l1=Label(frame1, text="Label 1", bg="red", sticky="E")
-l2=Label(frame2, text="Label 2", bg="green", sticky="E")
-l3=Label(frame3, text="Label 3", bg="blue", sticky="E")
+l1 = Label(frame1, text="Label 1", bg="red")  # , sticky="E")
+l2 = Label(frame2, text="Label 2", bg="green")  # , sticky="E")
+l3 = Label(frame3, text="Label 3", bg="blue")  # , sticky="E")
 l1.grid()
 l2.grid()
 l3.grid()
-b1=Button(frame1, text="CLICK")
-b2=Button(frame2, text="CLICK")
-b3=Button(frame3, text="CLICK")
+b1 = Button(frame1, text="CLICK")
+b2 = Button(frame2, text="CLICK")
+b3 = Button(frame3, text="CLICK")
 b1.grid()
 b2.grid()
 b3.grid()
+root.mainloop()
 
 '''
 from tkinter import *
@@ -36,3 +36,4 @@ root.mainloop()
 
 
 # take a paragraph and scroll it
+'''
