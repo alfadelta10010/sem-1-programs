@@ -7,10 +7,23 @@
 import random
 import time
 import turtle
-import os
 from tkinter import *
 
 root = Tk()
+guess = ""
+oldGuess = ""
+gameType = 1
+done = False
+turn = 0
+vowelsList = ["a", "e", "i", "o", "u"]
+display = []
+answer = []
+dispString = ""
+answerIn = ""
+output = StringVar()
+COut = IntVar()
+buttWord = Button()
+count = 6
 
 root.columnconfigure(0, weight=1)
 root.columnconfigure(1, weight=1)
@@ -18,116 +31,28 @@ root.rowconfigure(0, weight=9)
 root.columnconfigure(1, weight=8)
 root.title('Hangman')
 
-guess = ""
-oldGuess = ""
 
-def clearScreen():
-    if os.name in ('nt', 'dos'):
-        command = 'cls'
-    else:
-        command = 'clear'
-    os.system(command)
-    turtle_screen.clear()
-    turtle_screen.bgcolor("#346B31")
-    draw.setpos(-125, -125)
-    draw.color("#FBF7F5")
-    draw.speed(1)
-
-
-def clearFrame(frame):
-    for widget in frame.winfo_children():
-        widget.destroy()
-
-
-def getInput(f):
-    answerIn1 = f.get()
-    return answerIn1
-
-
-def answerInput(inp):
-    global guess, oldGuess
-    oldGuess = guess
-    guess = inp.get()
-
-
-def mainGame(answerIn, mode):
-    clearFrame(frame2)
-    print(answerIn)
-    vowelsList = ["a", "e", "i", "o", "u"]
-    L = [face, leg, body, hands, head, stand]
-    answer = list(answerIn)
+def redirect():
+    global gameType, guess, oldGuess, done, dispString, display, answer, answerIn, output, COut, count
+    guess = ""
+    oldGuess = ""
+    done = False
     display = []
-    display.extend(answer)  # Will contain the word in list form
-    for i in range(len(display)):
-        w = 0
-        for j in range(len(vowelsList)):
-            if display[i] == vowelsList[j]:
-                w = 1
-        if w == 0:
-            display[i] = "_"
-    disp = " ".join(display)  # Contains the word in list form with blanks
-    print(disp)
-    print()
-
-    h5 = Label(frame2, text="————————————————\n GUESS THE WORD \n————————————————", bg="#85491b", bd=3,
-               font=('Chalkboard', 14, 'bold'), fg="#47270f")
+    answer = []
+    dispString = ""
+    answerIn = ""
     output = StringVar()
-    output.set(disp)
-    out = Label(frame2, textvariable=output, bg="#85491b", bd=3,
-                font=('Chalkboard', 14, 'bold'), fg="#47270f")
-    sp5 = Label(frame2, text="\n", bg="#85491b", bd=3)
-    in2 = Entry(frame2, bg="#85491b", bd=0, font=('Chalkboard', 12), fg="#2b1809", highlightcolor="#85491b",
-                show="*", width=18)
-    buttWord = Button(master=frame2, activeforeground="#1a0e05", activebackground="#542e11", bg="#754017",
-                      fg="#2b1809", relief=GROOVE, justify="center", height=1, text="GUESS",
-                      command=lambda: answerInput(in2))
-    h5.grid()
-    out.grid()
-    in2.grid()
-    sp5.grid()
-    in2.grid()
-    buttWord.grid()
-    output.set(disp)
-    out.grid()
-
+    COut = IntVar()
     count = 6
-    global guess, oldGuess
-    while count > 0 and display != answer:
-        flag = False
-        if guess != oldGuess:
-            for i in range(len(answer)):
-                if answer[i] == guess:
-                    display[i] = guess
-                    disp = " ".join(display)  # Contains the word in list form with blanks
-                    flag = True
-            output.set(disp)
-            root.update_idletasks()
-            oldGuess = guess
-
-            print(disp)
-            print()
-        else:
-            continue
-        if not flag:
-            count = count - 1
-            L[count]()
-
-        print("Chances left:", count)
-
-        if count == 0:
-            print("Sorry you lost. The word was", answerIn)
-    if count != 0:
-        print("Well done you guessed the word")
-    time.sleep(10)
-    if mode == 1:
-        clearScreen()
-        # Would you like to play again or quit pop up
-    elif mode == 2:
-        clearScreen()
-        twoPlayer(1)
+    clearTurtle()
+    if gameType == 2:
+        twoPlayer(2)
+    else:
+        singlePlayer()
 
 
 def stand():
+    global draw
     draw.pendown()
     draw.forward(100)
     draw.backward(50)
@@ -141,7 +66,8 @@ def stand():
 
 
 def head():
-    draw.showturtle()
+    global draw
+    # draw.showturtle()
     draw.right(90)
     draw.forward(20)
     draw.left(90)
@@ -162,7 +88,8 @@ def head():
 
 
 def hands():
-    draw.showturtle()
+    global draw
+    # draw.showturtle()
     draw.forward(30)
     draw.right(87)
     draw.forward(42)
@@ -177,14 +104,16 @@ def hands():
 
 
 def body():
-    draw.showturtle()
+    global draw
+    # draw.showturtle()
     draw.forward(30)
     draw.right(37)
     draw.hideturtle()
 
 
 def leg():
-    draw.showturtle()
+    global draw
+    # draw.showturtle()
     draw.forward(42)
     draw.right(180)
     draw.forward(42)
@@ -194,7 +123,8 @@ def leg():
 
 
 def face():
-    draw.showturtle()
+    global draw
+    # draw.showturtle()
     draw.penup()
     draw.left(180)
     draw.forward(42)
@@ -242,6 +172,22 @@ def face():
     draw.hideturtle()
 
 
+def clearTurtle():
+    global turtle_screen, draw
+    turtle_screen.resetscreen()
+    draw.penup()
+    turtle_screen.bgcolor("#346B31")
+    draw.setpos(-125, -125)
+    draw.color("#FBF7F5")
+    draw.speed(4)
+    draw.pendown()
+
+
+def clearFrame(frame):
+    for widget in frame.winfo_children():
+        widget.destroy()
+
+
 def singlePlayer():
     answerList = ["world", "animation", "africa", "computer", "rickshaw", "physics", "chemistry", "inception", "header",
                   "grandfather", "avatar", "shampoo", "electrolysis", "orangutan", "flow", "rumble", "shambles",
@@ -252,21 +198,157 @@ def singlePlayer():
     mainGame(answer1, 1)
 
 
+def answerInput(inp, modeIN):
+    global guess, oldGuess
+    oldGuess = guess
+    guess = inp.get()
+    inp.delete(0, END)
+    mainGameP2(modeIN)
+
+
+def mainGame(answerI, mode):
+    global guess, vowelsList, display, answer, answerIn, dispString, L, output, buttWord
+    answerIn = answerI
+    clearFrame(frame2)
+    print(answerIn)
+    answer = list(answerIn)
+    display.extend(answer)  # Will contain the word in list form
+    for i in range(len(display)):
+        w = 0
+        for j in range(len(vowelsList)):
+            if display[i] == vowelsList[j]:
+                w = 1
+        if w == 0:
+            display[i] = "_"
+    dispString = " ".join(display)  # Contains the word in list form with blanks
+    output.set(dispString)
+    COut.set(count)
+    h5 = Label(frame2, text="————————————————\n GUESS THE WORD \n————————————————", bg="#85491b", bd=3,
+               font=('Chalkboard', 14, 'bold'), fg="#47270f")
+    out = Label(frame2, textvariable=output, bg="#85491b", bd=3,
+                font=('Chalkboard', 14, 'bold'), fg="#47270f")
+    h6 = Label(frame2, text="\n Chances left: ", bg="#85491b", bd=3,
+               font=('Chalkboard', 14, 'bold'), fg="#47270f")
+    outC = Label(frame2, textvariable=COut, bg="#85491b", bd=3,
+                 font=('Chalkboard', 16, 'bold'), fg="#47270f")
+    in2 = Entry(frame2, bg="#85491b", bd=0, font=('Chalkboard', 12), fg="#2b1809", highlightcolor="#85491b",
+                width=4, justify=CENTER)
+    sp5 = Label(frame2, text="\n", bg="#85491b", bd=3)
+    buttWord = Button(master=frame2, activeforeground="#1a0e05", activebackground="#542e11", bg="#754017",
+                      fg="#2b1809", relief=GROOVE, justify="center", height=1, text="GUESS",
+                      command=lambda: answerInput(in2, mode))
+    h5.grid()
+    out.grid()
+    h6.grid()
+    outC.grid()
+    in2.grid()
+    sp5.grid()
+    buttWord.grid()
+
+
+def mainGameP2(gameMode):
+    global gameType, guess, oldGuess, done, dispString, display, answer, answerIn, output, COut, count
+    won = False
+    while count > 0 and display != answer and guess != oldGuess:
+        done = False
+        flag = False
+        for i in range(len(answer)):
+            if answer[i] == guess:
+                display[i] = guess
+                flag = True
+        oldGuess = guess
+        dispString = " ".join(display)
+        output.set(dispString)
+        root.update_idletasks()
+        if not flag:
+            count = count - 1
+            COut.set(count)
+            root.update_idletasks()
+            L[count]()
+        if count == 0:
+            won = False
+            done = True
+    if display == answer and count != 0:
+        won = True
+        done = True
+    if done:
+        if gameMode == 1:
+            clearFrame(frame2)
+            if won:
+                h9 = Label(frame2, text="————————————————\n YOU WON! \n————————————————", bg="#85491b", bd=3,
+                           font=('Chalkboard', 14, 'bold'), fg="#47270f", anchor=CENTER)
+            else:
+                h9 = Label(frame2, text="————————————————\n YOU LOST :( \n————————————————", bg="#85491b", bd=3,
+                           font=('Chalkboard', 14, 'bold'), fg="#47270f", anchor=CENTER)
+            h10 = Label(frame2, text="The word was:", bg="#85491b", bd=3,
+                        font=('Chalkboard', 14, 'bold'), fg="#47270f", anchor=CENTER)
+            output.set(("".join(answer)))
+            root.update_idletasks()
+            out = Label(frame2, textvariable=output, bg="#85491b", bd=3,
+                        font=('Chalkboard', 14, 'bold'), fg="#47270f")
+            bAgain = Button(master=frame2, relief=GROOVE, activeforeground="#1a0e05", activebackground="#542e11",
+                            bg="#754017", fg="#2b1809", justify="center", height=4, text="PLAY\nAGAIN", width=8,
+                            command=redirect)
+            sp5 = Label(frame2, text="", bg="#85491b", bd=3)
+            bQuit = Button(master=frame2, relief=GROOVE, activeforeground="#1a0e05", activebackground="#542e11",
+                           bg="#754017", fg="#2b1809", justify="center", height=4, text="QUIT", width=8,
+                           command=root.destroy)
+            h9.grid()
+            h10.grid()
+            out.grid()
+            bAgain.grid()
+            sp5.grid()
+            bQuit.grid()
+        elif gameMode == 2:
+            clearTurtle()
+            clearFrame(frame2)
+            if won:
+                h9 = Label(frame2, text="————————————————\n YOU WON! \n————————————————", bg="#85491b", bd=3,
+                           font=('Chalkboard', 14, 'bold'), fg="#47270f", anchor=CENTER)
+            else:
+                h9 = Label(frame2, text="————————————————\n YOU LOST :( \n————————————————", bg="#85491b", bd=3,
+                           font=('Chalkboard', 14, 'bold'), fg="#47270f", anchor=CENTER)
+            h10 = Label(frame2, text="The word was:", bg="#85491b", bd=3,
+                        font=('Chalkboard', 14, 'bold'), fg="#47270f", anchor=CENTER)
+            output.set(("".join(answer)))
+            root.update_idletasks()
+            out = Label(frame2, textvariable=output, bg="#85491b", bd=3,
+                        font=('Chalkboard', 14, 'bold'), fg="#47270f")
+            h9.grid()
+            h10.grid()
+            out.grid()
+            time.sleep(5)
+            guess = ""
+            oldGuess = ""
+            done = False
+            display = []
+            answer = []
+            dispString = ""
+            answerIn = ""
+            output = StringVar()
+            COut = IntVar()
+            count = 6
+            clearTurtle()
+            twoPlayer(1)
+
+
 def twoPlayer(n):
     clearFrame(frame2)
+    global gameType, turn
     if n == 1:
         turn = 2
     elif n == 2:
         turn = 1
+    gameType = 2
     h1 = Label(frame2, text="————————————————\n PLAYER {} \n————————————————".format(n), bg="#85491b",
                bd=3, font=('Chalkboard', 14, 'bold'), fg="#47270f")
     h2 = Label(frame2, text="\nEnter your word", bg="#85491b", bd=3, font=('Chalkboard', 12, 'bold'), fg="#47270f")
     in1 = Entry(frame2, bg="#85491b", bd=0, font=('Chalkboard', 12), fg="#2b1809", highlightcolor="#85491b",
-                show="*", width=18)
+                show="*", width=18, justify=CENTER)
     sp4 = Label(frame2, text="\n", bg="#85491b", bd=3)
     buttIn = Button(master=frame2, activeforeground="#1a0e05", activebackground="#542e11", bg="#754017",
                     fg="#2b1809", relief=GROOVE, justify="center", height=1, text="SUBMIT",
-                    command=lambda: twoPlayerInput(turn, in1))
+                    command=lambda: twoPlayerInput(in1))
     h1.pack()
     h2.pack()
     in1.pack()
@@ -274,24 +356,22 @@ def twoPlayer(n):
     buttIn.pack()
 
 
-def twoPlayerInput(turn, inp):
+def twoPlayerInput(inp):
+    global turn
     answerIn1 = inp.get()
     if turn == 1:
-        print("Turn", 1)
         mainGame(answerIn1, 2)
-        twoPlayer(1)
-    elif turn == 2:
-        print("Turn", 2)
+    if turn == 2:
         mainGame(answerIn1, 1)
-        # end game
 
 
 # Startup screen
+L = [face, leg, body, hands, head, stand]
 spacer1 = Frame(root, bg="#754017")
 frame1 = Frame(root, bg="#754017")
 frame2 = Frame(root, bg="#85491b")
 sp1 = Label(spacer1, text="                  ", bg="#754017", bd=3, font=('Chalkboard SE', 18, 'bold'))
-l1 = Label(root, text="H A N G M A N", bg="#754017", bd=3, font=('Chalkboard SE', 18, "bold"), anchor=E, fg="#2b1809")
+l1 = Label(root, text="H A N G M A N", bg="#754017", bd=3, font=('PHOSPHATE', 22), anchor=E, fg="#2b1809")
 canvas = Canvas(master=root, width=300, height=300, bd=0)
 turtle_screen = turtle.TurtleScreen(canvas)
 turtle_screen.bgcolor("#346B31")
@@ -322,6 +402,6 @@ draw = turtle.RawTurtle(turtle_screen)
 draw.penup()
 draw.setpos(-125, -125)
 draw.color("#FBF7F5")
-draw.speed(1)
-root.update_idletasks()
+draw.speed(4)
+
 root.mainloop()
