@@ -67,7 +67,7 @@ def stand():
 
 def head():
     global draw
-    # draw.showturtle()
+    draw.showturtle()
     draw.right(90)
     draw.forward(20)
     draw.left(90)
@@ -89,7 +89,7 @@ def head():
 
 def hands():
     global draw
-    # draw.showturtle()
+    draw.showturtle()
     draw.forward(30)
     draw.right(87)
     draw.forward(42)
@@ -105,7 +105,7 @@ def hands():
 
 def body():
     global draw
-    # draw.showturtle()
+    draw.showturtle()
     draw.forward(30)
     draw.right(37)
     draw.hideturtle()
@@ -113,7 +113,7 @@ def body():
 
 def leg():
     global draw
-    # draw.showturtle()
+    draw.showturtle()
     draw.forward(42)
     draw.right(180)
     draw.forward(42)
@@ -124,7 +124,7 @@ def leg():
 
 def face():
     global draw
-    # draw.showturtle()
+    draw.showturtle()
     draw.penup()
     draw.left(180)
     draw.forward(42)
@@ -179,7 +179,7 @@ def clearTurtle():
     turtle_screen.bgcolor("#346B31")
     draw.setpos(-125, -125)
     draw.color("#FBF7F5")
-    draw.speed(4)
+    draw.speed(2)
     draw.pendown()
 
 
@@ -402,6 +402,6 @@ draw = turtle.RawTurtle(turtle_screen)
 draw.penup()
 draw.setpos(-125, -125)
 draw.color("#FBF7F5")
-draw.speed(4)
+draw.speed(2)
 
 root.mainloop()
