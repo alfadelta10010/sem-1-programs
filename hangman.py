@@ -1,18 +1,10 @@
-# One player thinks of a word, phrase or sentence and the other tries to guess it
-# by suggesting letters within a certain number of guesses.  If the guessing player
-# suggests a letter which occurs in the word, the other player writes it in all its
-# correct positions. If the suggested letter does not occur in the word, the other
-# player draws one element of a hanged stick figure as a tally mark.
-
 import random
-import time
 import turtle
 from tkinter import *
 
 root = Tk()
 guess = ""
 oldGuess = ""
-gameType = 1
 done = False
 turn = 0
 vowelsList = ["a", "e", "i", "o", "u"]
@@ -32,8 +24,8 @@ root.columnconfigure(1, weight=8)
 root.title('Hangman')
 
 
-def redirect():
-    global gameType, guess, oldGuess, done, dispString, display, answer, answerIn, output, COut, count
+def redirect():  # no. 14
+    global guess, oldGuess, done, dispString, display, answer, answerIn, output, COut, count
     guess = ""
     oldGuess = ""
     done = False
@@ -44,14 +36,26 @@ def redirect():
     output = StringVar()
     COut = IntVar()
     count = 6
+    clearFrame(frame2)
+    h2 = Label(frame2, text="————————————————\n SELECT MODE \n————————————————", bg="#85491b", bd=3,
+               font=('Chalkboard', 14, "bold"), fg="#47270f")
+    spacer2 = Label(frame2, text="", bg="#85491b", bd=3)
+    bSingl = Button(master=frame2, relief=GROOVE, activeforeground="#1a0e05", activebackground="#542e11",
+                    bg="#754017", fg="#2b1809", justify="center", height=3, text="SINGLE\nPLAYER", width=8,
+                    command=singlePlayer)
+    spacer3 = Label(frame2, text="", bg="#85491b", bd=3)
+    bDoubl = Button(master=frame2, relief=GROOVE, activeforeground="#1a0e05", activebackground="#542e11",
+                    bg="#754017", fg="#2b1809", justify="center", height=3, text="TWO\nPLAYER", width=8,
+                    command=lambda: twoPlayer(2))
+    h2.grid()
+    spacer2.grid()
+    bSingl.grid()
+    spacer3.grid()
+    bDoubl.grid()
     clearTurtle()
-    if gameType == 2:
-        twoPlayer(2)
-    else:
-        singlePlayer()
 
 
-def stand():
+def stand():  # no. 8
     global draw
     draw.pendown()
     draw.forward(100)
@@ -65,8 +69,9 @@ def stand():
     draw.hideturtle()
 
 
-def head():
+def head():  # no. 9
     global draw
+    draw.pendown()
     draw.showturtle()
     draw.right(90)
     draw.forward(20)
@@ -87,8 +92,9 @@ def head():
     draw.hideturtle()
 
 
-def hands():
+def hands():  # no. 10
     global draw
+    draw.pendown()
     draw.showturtle()
     draw.forward(30)
     draw.right(87)
@@ -103,16 +109,18 @@ def hands():
     draw.hideturtle()
 
 
-def body():
+def body():  # no. 11
     global draw
+    draw.pendown()
     draw.showturtle()
     draw.forward(30)
     draw.right(37)
     draw.hideturtle()
 
 
-def leg():
+def leg():  # no. 12
     global draw
+    draw.pendown()
     draw.showturtle()
     draw.forward(42)
     draw.right(180)
@@ -122,8 +130,9 @@ def leg():
     draw.hideturtle()
 
 
-def face():
+def face():  # no. 13
     global draw
+    draw.pendown()
     draw.showturtle()
     draw.penup()
     draw.left(180)
@@ -172,7 +181,7 @@ def face():
     draw.hideturtle()
 
 
-def clearTurtle():
+def clearTurtle():  # no. 7
     global turtle_screen, draw
     turtle_screen.resetscreen()
     draw.penup()
@@ -183,12 +192,12 @@ def clearTurtle():
     draw.pendown()
 
 
-def clearFrame(frame):
+def clearFrame(frame):  # no. 6
     for widget in frame.winfo_children():
         widget.destroy()
 
 
-def singlePlayer():
+def singlePlayer():  # no. 5
     answerList = ["world", "animation", "africa", "computer", "rickshaw", "physics", "chemistry", "inception", "header",
                   "grandfather", "avatar", "shampoo", "electrolysis", "orangutan", "flow", "rumble", "shambles",
                   "display", "international", "binder", "paperclip", "socket", "inferno", "archetype", "external",
@@ -198,7 +207,7 @@ def singlePlayer():
     mainGame(answer1, 1)
 
 
-def answerInput(inp, modeIN):
+def answerInput(inp, modeIN):  # no. 4
     global guess, oldGuess
     oldGuess = guess
     guess = inp.get()
@@ -206,11 +215,10 @@ def answerInput(inp, modeIN):
     mainGameP2(modeIN)
 
 
-def mainGame(answerI, mode):
+def mainGame(answerI, mode):  # no. 1
     global guess, vowelsList, display, answer, answerIn, dispString, L, output, buttWord
     answerIn = answerI
     clearFrame(frame2)
-    print(answerIn)
     answer = list(answerIn)
     display.extend(answer)  # Will contain the word in list form
     for i in range(len(display)):
@@ -231,7 +239,7 @@ def mainGame(answerI, mode):
                font=('Chalkboard', 14, 'bold'), fg="#47270f")
     outC = Label(frame2, textvariable=COut, bg="#85491b", bd=3,
                  font=('Chalkboard', 16, 'bold'), fg="#47270f")
-    in2 = Entry(frame2, bg="#85491b", bd=0, font=('Chalkboard', 12), fg="#2b1809", highlightcolor="#85491b",
+    in2 = Entry(frame2, bg="#754017", bd=2, font=('Chalkboard', 12), fg="#2b1809", highlightcolor="#85491b",
                 width=4, justify=CENTER)
     sp5 = Label(frame2, text="\n", bg="#85491b", bd=3)
     buttWord = Button(master=frame2, activeforeground="#1a0e05", activebackground="#542e11", bg="#754017",
@@ -243,11 +251,11 @@ def mainGame(answerI, mode):
     outC.grid()
     in2.grid()
     sp5.grid()
-    buttWord.grid()
+    buttWord.grid(padx=20, pady=10)
 
 
-def mainGameP2(gameMode):
-    global gameType, guess, oldGuess, done, dispString, display, answer, answerIn, output, COut, count
+def mainGameP2(gameMode):  # no. 3
+    global guess, oldGuess, done, dispString, display, answer, answerIn, output, COut, count
     won = False
     while count > 0 and display != answer and guess != oldGuess:
         done = False
@@ -287,18 +295,18 @@ def mainGameP2(gameMode):
             out = Label(frame2, textvariable=output, bg="#85491b", bd=3,
                         font=('Chalkboard', 14, 'bold'), fg="#47270f")
             bAgain = Button(master=frame2, relief=GROOVE, activeforeground="#1a0e05", activebackground="#542e11",
-                            bg="#754017", fg="#2b1809", justify="center", height=4, text="PLAY\nAGAIN", width=8,
+                            bg="#754017", fg="#2b1809", justify="center", height=3, text="PLAY\nAGAIN", width=8,
                             command=redirect)
             sp5 = Label(frame2, text="", bg="#85491b", bd=3)
             bQuit = Button(master=frame2, relief=GROOVE, activeforeground="#1a0e05", activebackground="#542e11",
-                           bg="#754017", fg="#2b1809", justify="center", height=4, text="QUIT", width=8,
+                           bg="#754017", fg="#2b1809", justify="center", height=3, text="QUIT", width=8,
                            command=root.destroy)
             h9.grid()
             h10.grid()
             out.grid()
-            bAgain.grid()
+            bAgain.grid(padx=20, pady=10)
             sp5.grid()
-            bQuit.grid()
+            bQuit.grid(padx=20, pady=10)
         elif gameMode == 2:
             clearTurtle()
             clearFrame(frame2)
@@ -317,7 +325,6 @@ def mainGameP2(gameMode):
             h9.grid()
             h10.grid()
             out.grid()
-            time.sleep(5)
             guess = ""
             oldGuess = ""
             done = False
@@ -329,21 +336,25 @@ def mainGameP2(gameMode):
             COut = IntVar()
             count = 6
             clearTurtle()
-            twoPlayer(1)
+            sp6 = Label(frame2, text="\n\n", bg="#85491b", bd=3)
+            cont = Button(master=frame2, activeforeground="#1a0e05", activebackground="#542e11", bg="#754017",
+                          fg="#2b1809", relief=GROOVE, justify="center", height=1, text="CONTINUE",
+                          command=lambda: twoPlayer(1))
+            sp6.grid()
+            cont.grid(padx=20, pady=10)
 
 
-def twoPlayer(n):
+def twoPlayer(n):  # no. 2
     clearFrame(frame2)
-    global gameType, turn
+    global turn
     if n == 1:
         turn = 2
     elif n == 2:
         turn = 1
-    gameType = 2
     h1 = Label(frame2, text="————————————————\n PLAYER {} \n————————————————".format(n), bg="#85491b",
                bd=3, font=('Chalkboard', 14, 'bold'), fg="#47270f")
     h2 = Label(frame2, text="\nEnter your word", bg="#85491b", bd=3, font=('Chalkboard', 12, 'bold'), fg="#47270f")
-    in1 = Entry(frame2, bg="#85491b", bd=0, font=('Chalkboard', 12), fg="#2b1809", highlightcolor="#85491b",
+    in1 = Entry(frame2, bg="#754017", bd=2, font=('Chalkboard', 12), fg="#2b1809", highlightcolor="#85491b",
                 show="*", width=18, justify=CENTER)
     sp4 = Label(frame2, text="\n", bg="#85491b", bd=3)
     buttIn = Button(master=frame2, activeforeground="#1a0e05", activebackground="#542e11", bg="#754017",
@@ -353,7 +364,7 @@ def twoPlayer(n):
     h2.pack()
     in1.pack()
     sp4.pack()
-    buttIn.pack()
+    buttIn.pack(padx=20, pady=10)
 
 
 def twoPlayerInput(inp):
@@ -366,7 +377,6 @@ def twoPlayerInput(inp):
 
 
 # Startup screen
-L = [face, leg, body, hands, head, stand]
 spacer1 = Frame(root, bg="#754017")
 frame1 = Frame(root, bg="#754017")
 frame2 = Frame(root, bg="#85491b")
@@ -379,13 +389,14 @@ l2 = Label(frame2, text="————————————————\n SELE
            font=('Chalkboard', 14, "bold"), fg="#47270f")
 sp2 = Label(frame2, text="", bg="#85491b", bd=3)
 bSing = Button(master=frame2, relief=GROOVE, activeforeground="#1a0e05", activebackground="#542e11",
-               bg="#754017", fg="#2b1809", justify="center", height=4, text="SINGLE\nPLAYER", width=8,
+               bg="#754017", fg="#2b1809", justify="center", height=3, text="SINGLE\nPLAYER", width=8,
                command=singlePlayer)
-sp3 = Label(frame2, text="\n", bg="#85491b", bd=3)
+sp3 = Label(frame2, text="", bg="#85491b", bd=3)
 bDouble = Button(master=frame2, relief=GROOVE, activeforeground="#1a0e05", activebackground="#542e11",
-                 bg="#754017", fg="#2b1809", justify="center", height=4, text="TWO\nPLAYER", width=8,
+                 bg="#754017", fg="#2b1809", justify="center", height=3, text="TWO\nPLAYER", width=8,
                  command=lambda: twoPlayer(2))
 # Activating grids
+
 spacer1.grid(row=0, column=8, sticky='NSEW')
 frame1.grid(row=0, column=0, sticky='NSEW', columnspan=3)
 frame2.grid(row=1, column=8, sticky='NSEW', rowspan=7)
@@ -400,6 +411,7 @@ bDouble.grid()
 # Starting Turtle
 draw = turtle.RawTurtle(turtle_screen)
 draw.penup()
+L = [face, leg, body, hands, head, stand]
 draw.setpos(-125, -125)
 draw.color("#FBF7F5")
 draw.speed(2)
