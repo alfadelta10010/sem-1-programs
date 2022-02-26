@@ -1,2 +1,4 @@
-r = lambda x, y: x * y
-print(r(12, 4))
+# 1. WAP using lambda function
+# a) Multiply argument x wth arg y and print the result
+res = lambda x, y: x * y
+print(res(12, 4))

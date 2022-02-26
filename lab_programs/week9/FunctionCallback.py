@@ -18,7 +18,7 @@ def someAction(i, cb):
     cb(i)
 
 
-num = int(input())
+num = int(input("Enter a number: "))
 someAction(num, sum1)
 someAction(num, doubleIt)
 someAction(num, tripleIt)

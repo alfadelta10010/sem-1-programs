@@ -9,4 +9,4 @@ def power(num, toPwr):
 num, po = input("Enter a number raised to a power (2^3): ").split("^")
 num = int(num)
 po = int(po)
-print(power(num, po))
+print("{}^{} = {}".format(num, po, power(num, po)))
